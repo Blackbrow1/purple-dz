@@ -50,3 +50,18 @@ function simulatingDice(dice) {
   }
   
   console.log(simulatingDice('D16'));
+
+  function isValidationAge(ageStr) {
+    const birthday = new Date(ageStr);
+    const nowDate = Date.now();
+    
+    const userAge = (nowDate - Number(birthday)) / (1000 * 60 * 60 * 24 * 365);
+    
+    if (userAge > 14) {
+    return true;
+    }
+    
+    return false;
+    }
+    
+    console.log(isValidationAge('2010-06-09'));
