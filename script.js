@@ -141,6 +141,44 @@ const ork = new Ork('нож');
 
 console.log(ork);
 
+// 6-class
+class Car {
+  #make;
+  #model;
+  #run;
+  constructor(make, model, run) {
+    this.#make = make;
+    this.#model = model;
+    this.#run = run;
+  }
+
+  changeRun(newRun) {
+    this.#run = newRun
+  }
+
+  get run() {
+    return this.#run;
+  }
+
+  get model() {
+    return this.#model;
+  }
+
+  get make() {
+    return this.#make;
+  }
+
+  info() {
+    console.log(this.make, this.model, this.run);
+  }
+}
+
+const mercedes = new Car('Mercedes', 'CLA', '3km');
+console.log(mercedes);
+console.log(mercedes.changeRun('6km'));
+console.log(mercedes);
+console.log(mercedes.info());
+
 
 
 
