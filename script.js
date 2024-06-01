@@ -112,3 +112,35 @@ console.log(getDaysToNY('12-31-2024'));
 // }
 
 // console.log(getCookedPizza(5000));
+
+
+// 5-oop
+const Character = function (race, name, language) {
+  this.race = race;
+  this.name = name;
+  this.language = language;
+}
+
+Character.prototype.speak = function() {
+  console.log(this.language, this.name);
+}
+
+const Ork = function(weapon) {
+  this.weapon = weapon;
+}
+
+Ork.prototype.hit = 'Удар';
+Ork.prototype.spell = 'Абракадабра';
+Ork.prototype.createSpell = function() {
+  console.log('Логика создания заклинания');
+};
+
+const Genry = new Character('Зимбабве', 'Михайло', 'фарси');
+Ork.__proto__ = Genry;
+const ork = new Ork('нож');
+
+console.log(ork);
+
+
+
+
