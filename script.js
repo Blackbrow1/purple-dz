@@ -93,25 +93,25 @@ console.log(getDaysToNY('12-31-2024'));
 // console.log(value / (1000 * 60 * 60 * 24));
 
 
-// // pizza timer
-// function getCookedPizza(time) {
-//   const end = new Date().getTime() + time;
-//   const interval = setInterval(() => {
-//     console.log(
-//       new Intl.DateTimeFormat('ru-RU', {
-//         minute: 'numeric',
-//         second: 'numeric'
-//       }).format(end + 100 - new Date())
-//     );
-//   }, 1000);
+// pizza timer
+function getCookedPizza(time) {
+  const end = new Date().getTime() + time;
+  const interval = setInterval(() => {
+    console.log(
+      new Intl.DateTimeFormat('ru-RU', {
+        minute: 'numeric',
+        second: 'numeric'
+      }).format(end + 100 - new Date())
+    );
+  }, 1000);
 
-//   setTimeout(() => {
-//     clearInterval(interval);
-//     console.log('!!!');
-//   }, time)
-// }
+  setTimeout(() => {
+    clearInterval(interval);
+    console.log('!!!');
+  }, time)
+}
 
-// console.log(getCookedPizza(5000));
+console.log(getCookedPizza(5000));
 
 
 // 5-oop
