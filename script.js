@@ -93,22 +93,92 @@ console.log(getDaysToNY('12-31-2024'));
 // console.log(value / (1000 * 60 * 60 * 24));
 
 
-// // pizza timer
-// function getCookedPizza(time) {
-//   const end = new Date().getTime() + time;
-//   const interval = setInterval(() => {
-//     console.log(
-//       new Intl.DateTimeFormat('ru-RU', {
-//         minute: 'numeric',
-//         second: 'numeric'
-//       }).format(end + 100 - new Date())
-//     );
-//   }, 1000);
+// pizza timer
+function getCookedPizza(time) {
+  const end = new Date().getTime() + time;
+  const interval = setInterval(() => {
+    console.log(
+      new Intl.DateTimeFormat('ru-RU', {
+        minute: 'numeric',
+        second: 'numeric'
+      }).format(end + 100 - new Date())
+    );
+  }, 1000);
 
-//   setTimeout(() => {
-//     clearInterval(interval);
-//     console.log('!!!');
-//   }, time)
-// }
+  setTimeout(() => {
+    clearInterval(interval);
+    console.log('!!!');
+  }, time)
+}
 
-// console.log(getCookedPizza(5000));
+console.log(getCookedPizza(5000));
+
+
+// 5-oop
+const Character = function (race, name, language) {
+  this.race = race;
+  this.name = name;
+  this.language = language;
+}
+
+Character.prototype.speak = function() {
+  console.log(this.language, this.name);
+}
+
+const Ork = function(weapon) {
+  this.weapon = weapon;
+}
+
+Ork.prototype.hit = 'Удар';
+Ork.prototype.spell = 'Абракадабра';
+Ork.prototype.createSpell = function() {
+  console.log('Логика создания заклинания');
+};
+
+const Genry = new Character('Зимбабве', 'Михайло', 'фарси');
+Ork.__proto__ = Genry;
+const ork = new Ork('нож');
+
+console.log(ork);
+
+// 6-class
+class Car {
+  #make;
+  #model;
+  #run;
+  constructor(make, model, run) {
+    this.#make = make;
+    this.#model = model;
+    this.#run = run;
+  }
+
+  changeRun(newRun) {
+    this.#run = newRun
+  }
+
+  get run() {
+    return this.#run;
+  }
+
+  get model() {
+    return this.#model;
+  }
+
+  get make() {
+    return this.#make;
+  }
+
+  info() {
+    console.log(this.make, this.model, this.run);
+  }
+}
+
+const mercedes = new Car('Mercedes', 'CLA', '3km');
+console.log(mercedes);
+console.log(mercedes.changeRun('6km'));
+console.log(mercedes);
+console.log(mercedes.info());
+
+
+
+
