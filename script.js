@@ -93,25 +93,25 @@ console.log(getDaysToNY('12-31-2024'));
 // console.log(value / (1000 * 60 * 60 * 24));
 
 
-// pizza timer
-function getCookedPizza(time) {
-  const end = new Date().getTime() + time;
-  const interval = setInterval(() => {
-    console.log(
-      new Intl.DateTimeFormat('ru-RU', {
-        minute: 'numeric',
-        second: 'numeric'
-      }).format(end + 100 - new Date())
-    );
-  }, 1000);
+// // pizza timer
+// function getCookedPizza(time) {
+//   const end = new Date().getTime() + time;
+//   const interval = setInterval(() => {
+//     console.log(
+//       new Intl.DateTimeFormat('ru-RU', {
+//         minute: 'numeric',
+//         second: 'numeric'
+//       }).format(end + 100 - new Date())
+//     );
+//   }, 1000);
 
-  setTimeout(() => {
-    clearInterval(interval);
-    console.log('!!!');
-  }, time)
-}
+//   setTimeout(() => {
+//     clearInterval(interval);
+//     console.log('!!!');
+//   }, time)
+// }
 
-console.log(getCookedPizza(5000));
+// console.log(getCookedPizza(5000));
 
 
 // 5-oop
@@ -179,6 +179,44 @@ console.log(mercedes.changeRun('6km'));
 console.log(mercedes);
 console.log(mercedes.info());
 
+// 7 oop in class
 
+class Person {
+  constructor(race, name, lang) {
+    this.race = race;
+    this.name = name;
+    this.lang = lang;
+  }
 
+  speak() {
+    console.log(`${this.race} ${this.name} ${this.lang}`);
+  }
+}
+
+class Orc extends Person {
+  constructor(race, name, lang, weapon) {
+    super(race, name, lang);
+    this.weapon = weapon;
+  }
+}
+
+class Elf extends Person {
+  constructor(race, name, lang, spell) {
+    super(race, name, lang);
+    this.spell = spell;
+  }
+
+  createSpell() {
+    console.log('Создаем заклинание');
+  }
+
+  speak() {
+    console.log(`${this.race} ${this.name} ${this.lang} ${this.spell}`);
+  }
+}
+
+const orc1 = new Orc('Mars', 'Michailo', 'Marsiana', 'Topol-M');
+const elf1 = new Elf('Russia', 'Ivan', 'Russian', 'Word');
+console.log(orc1.speak());
+console.log(elf1.speak());
 
