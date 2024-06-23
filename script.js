@@ -112,3 +112,132 @@ console.log(getDaysToNY('12-31-2024'));
 // }
 
 // console.log(getCookedPizza(5000));
+
+
+// 5-oop
+const Character = function (race, name, language) {
+  this.race = race;
+  this.name = name;
+  this.language = language;
+}
+
+Character.prototype.speak = function() {
+  console.log(this.language, this.name);
+}
+
+const Ork = function(weapon) {
+  this.weapon = weapon;
+}
+
+Ork.prototype.hit = 'Удар';
+Ork.prototype.spell = 'Абракадабра';
+Ork.prototype.createSpell = function() {
+  console.log('Логика создания заклинания');
+};
+
+const Genry = new Character('Зимбабве', 'Михайло', 'фарси');
+Ork.__proto__ = Genry;
+const ork = new Ork('нож');
+
+console.log(ork);
+
+// 6-class
+class Car {
+  #make;
+  #model;
+  #run;
+  constructor(make, model, run) {
+    this.#make = make;
+    this.#model = model;
+    this.#run = run;
+  }
+
+  changeRun(newRun) {
+    this.#run = newRun
+  }
+
+  get run() {
+    return this.#run;
+  }
+
+  get model() {
+    return this.#model;
+  }
+
+  get make() {
+    return this.#make;
+  }
+
+  info() {
+    console.log(this.make, this.model, this.run);
+  }
+}
+
+const mercedes = new Car('Mercedes', 'CLA', '3km');
+console.log(mercedes);
+console.log(mercedes.changeRun('6km'));
+console.log(mercedes);
+console.log(mercedes.info());
+
+// 7 oop in class
+
+class Person {
+  constructor(race, name, lang) {
+    this.race = race;
+    this.name = name;
+    this.lang = lang;
+  }
+
+  speak() {
+    console.log(`${this.race} ${this.name} ${this.lang}`);
+  }
+}
+
+class Orc extends Person {
+  constructor(race, name, lang, weapon) {
+    super(race, name, lang);
+    this.weapon = weapon;
+  }
+}
+
+class Elf extends Person {
+  constructor(race, name, lang, spell) {
+    super(race, name, lang);
+    this.spell = spell;
+  }
+
+  createSpell() {
+    console.log('Создаем заклинание');
+  }
+
+  speak() {
+    console.log(`${this.race} ${this.name} ${this.lang} ${this.spell}`);
+  }
+}
+
+const orc1 = new Orc('Mars', 'Michailo', 'Marsiana', 'Topol-M');
+const elf1 = new Elf('Russia', 'Ivan', 'Russian', 'Word');
+console.log(orc1.speak());
+console.log(elf1.speak());
+
+// 8 solid
+class Billing {
+  #amount;
+
+  calculateTotal() {
+    
+  }
+}
+
+const request = new XMLHttpRequest();
+request.open('GET', 'https://dummyjson.com/products/');
+request.send();
+
+request.addEventListener('load', function() {
+  const {products} = JSON.parse(this.responseText);
+
+  console.log(products);
+
+  const sum = products.reduce((acc, p) => {return acc += p.price}, 0);
+  console.log(sum / products.length);
+});
