@@ -220,3 +220,24 @@ const elf1 = new Elf('Russia', 'Ivan', 'Russian', 'Word');
 console.log(orc1.speak());
 console.log(elf1.speak());
 
+// 8 solid
+class Billing {
+  #amount;
+
+  calculateTotal() {
+    
+  }
+}
+
+const request = new XMLHttpRequest();
+request.open('GET', 'https://dummyjson.com/products/');
+request.send();
+
+request.addEventListener('load', function() {
+  const {products} = JSON.parse(this.responseText);
+
+  console.log(products);
+
+  const sum = products.reduce((acc, p) => {return acc += p.price}, 0);
+  console.log(sum / products.length);
+});
