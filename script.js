@@ -242,21 +242,106 @@
 //   console.log(sum / products.length);
 // });
 
-// 9 pokemon
-const request = new XMLHttpRequest();
-request.open('GET', 'https://pokeapi.co/api/v2/pokemon/ditto');
-request.send();
+// // 9 pokemon
+// const request = new XMLHttpRequest();
+// request.open('GET', 'https://pokeapi.co/api/v2/pokemon/ditto');
+// request.send();
 
-request.addEventListener('load', function() {
-  const {abilities} = JSON.parse(this.responseText);
-  console.log(abilities[0].ability.url);
+// request.addEventListener('load', function() {
+//   const {abilities} = JSON.parse(this.responseText);
+//   console.log(abilities[0].ability.url);
 
-  const request = new XMLHttpRequest();
-  request.open('GET', abilities[0].ability.url);
-  request.send();
+//   const request = new XMLHttpRequest();
+//   request.open('GET', abilities[0].ability.url);
+//   request.send();
 
-  request.addEventListener('load', function() {
-    const {effect_entries} = JSON.parse(this.responseText);
-    console.log(effect_entries[1].effect);
+//   request.addEventListener('load', function() {
+//     const {effect_entries} = JSON.parse(this.responseText);
+//     console.log(effect_entries[1].effect);
+//   })
+// });
+
+// 10 pokemon promise
+// fetch('https://dummyjso.com/products')
+//   .then(
+//     response => {
+//       if (!response.ok) {
+//         throw new Error(`Произошла ошибка ${response.status}`)
+//       }
+//       return response.json()
+//     }
+//   )
+//   .then(({products}) => {
+//     console.log(products);
+//     return fetch('https://dummyjson.com/products/' + products[0].id);
+//   })
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error(`Произошла ошибка ${response.status}`)
+//     }
+//     return response.json()
+//   })
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(error => console.log(error.message))
+
+  // function getData(url, errorMessage) {
+  //   return fetch(url)
+  //         .then(response => {
+  //           if (!response.ok) {
+  //             throw new Error(`${errorMessage} ${response.status}`)
+  //           }
+  //           return response.json()
+  //         })
+  // }
+
+  // getData('https://dummyjso.com/products', 'Невозможно получить продукт')
+  //   .then(({products}) => {
+  //     console.log(products);
+  //     return getData('https://dummyjson.com/products/' + products[0].id)
+  //   })
+  //   .then(data => {
+  //     console.log(data);
+  //   })
+  //   .catch(error => console.log('Ошибка ' + error.message));
+
+//     // 9 pokemon
+// const request = new XMLHttpRequest();
+// request.open('GET', 'https://pokeapi.co/api/v2/pokemon/ditto');
+// request.send();
+
+// request.addEventListener('load', function() {
+//   const {abilities} = JSON.parse(this.responseText);
+//   console.log(abilities[0].ability.url);
+
+//   const request = new XMLHttpRequest();
+//   request.open('GET', abilities[0].ability.url);
+//   request.send();
+
+//   request.addEventListener('load', function() {
+//     const {effect_entries} = JSON.parse(this.responseText);
+//     console.log(effect_entries[1].effect);
+//   })
+// });
+
+function getData(url, errorMessage, method = 'GET') {
+  return fetch(url, {
+    method
   })
-});
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`${errorMessage} ${response.status}`)
+    }
+    return response.json()
+  })
+}
+
+getData('https://pokeapi.co/api/v2/pokemon/ditto', 'Невозможно получить продукт')
+  .then(({abilities}) => {
+    return getData(abilities[1].ability.url)
+  })
+  .then(data => {
+    console.log(data.effect_entries[0].effect);
+  })
+  .catch((error) => console.log(error));
